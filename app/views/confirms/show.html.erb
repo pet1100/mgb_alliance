@@ -1,0 +1,45 @@
+<%= form_tag confirm_path do %>
+  <div class="container">
+      <div class="row align-items-center">
+        <div class="row mt-3">
+          <div class="col-2">
+            <%= button_tag "", id: "copy", class:"btn btn-danger fa-solid fa-copy" %>
+          </div>
+          <div class="col-10">
+            <%= text_field_tag :user_uuid, "String for the player to copy into MGB", id:"copy_text_field", class: 'text_field form-control', autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-2">
+            <%= button_tag "", id: "paste", class:"btn btn-primary fa-regular fa-clipboard" %>
+          </div>
+          <div class="col-10">
+            <%= text_field_tag :uuid_confirmation_code, nil, id:"paste_text_field", class: 'text_field form-control', autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
+          </div>
+        </div>
+      </div>
+        <%= submit_tag :submit, :class => 'btn btn-primary mt-3' %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#copy').on('click', function() {
+      var copyText = $("#copy_text_field");
+
+      copyText.select();
+      copyText[0].setSelectionRange(0, 99999);
+
+      navigator.clipboard.writeText(copyText.val());
+   });
+
+   $('#paste').on('click', function() {
+
+     navigator.clipboard.readText()
+     .then(text => {document.getElementById("paste_text_field").value = text;})
+   ;
+   });
+  });
+
+</script>

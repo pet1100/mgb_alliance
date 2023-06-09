@@ -1,0 +1,13 @@
+<%= form_tag login_path do %>
+  <div class="container">
+      <div class="row align-items-center">
+        <div class="mt-5">
+          <%= label_tag :uuid, :uuid, :class => 'control-label' %>
+        	<%= text_field_tag :uuid, params[:uuid], :class => 'text_field form-control', autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
+        </div>
+        <div class="mt-3">
+          <%= submit_tag :login, :class => 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+<% end %>
