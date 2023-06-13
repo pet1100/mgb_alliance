@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     root :to => 'invitation#index', as: :home
     resource :confirm, only: [:show, :create]
     resource :about, only: [:show]
-    post 'reset' => "session#destroy", as: :reset
+    post 'reset' => "sessions#destroy", as: :reset
   end
 end

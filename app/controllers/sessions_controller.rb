@@ -4,9 +4,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    uuid = Uuid.find_or_create_by(value: params[:uuid])
-    user = User.find_or_create_by(uuid: uuid)
+    user = User.find_or_create_by(uuid: params[:uuid])
     if user
+      user.update last_used: Time.now
       session[:user_id] = user.id
       redirect_to home_path
     else

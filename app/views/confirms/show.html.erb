@@ -6,7 +6,7 @@
             <%= button_tag "", id: "copy", class:"btn btn-danger fa-solid fa-copy" %>
           </div>
           <div class="col-10">
-            <%= text_field_tag :user_uuid, "String for the player to copy into MGB", id:"copy_text_field", class: 'text_field form-control', autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
+            <%= text_field_tag :user_uuid, next_to_confirm.uuid, id:"copy_text_field", class: 'text_field form-control', autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
           </div>
         </div>
         <div class="row mt-3">

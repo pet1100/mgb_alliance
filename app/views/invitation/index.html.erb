@@ -1,1 +1,25 @@
-<%= "List of all invitations sent to you." %>
+<%= "List of all invitations sent to you:" %> <%= @total_confirmed_for_me.count %>
+</br>
+<%= "Avaible for you:" %> <%= @available_confirmed_for_me.count %>
+<% @available_confirmed_for_me.each do |c| %>
+  <div>
+    <%= button_tag "", class:"btn btn-danger fa-solid fa-copy copy" %>
+    <%= text_field_tag "", c.code, :readonly => true %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      $('.copy').on('click', function() {
+        var copyText = $(this).siblings().first();
+
+        copyText.select();
+        copyText[0].setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(copyText.val());
+     });
+
+   });
+</script>
