@@ -1,6 +1,6 @@
-<%= "List of all invitations sent to you:" %> <%= @total_confirmed_for_me.count %>
+<%= t(:count_of_all_invitations_sent_to_you)+":" %> <%= @total_confirmed_for_me.count %>
 </br>
-<%= "Avaible for you:" %> <%= @available_confirmed_for_me.count %>
+<%= t(:count_of_available_invitations)+":" %> <%= @available_confirmed_for_me.count %>
 <% @available_confirmed_for_me.each do |c| %>
   <div>
     <%= button_tag "", class:"btn btn-danger fa-solid fa-copy copy" %>
