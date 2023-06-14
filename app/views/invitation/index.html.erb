@@ -13,6 +13,8 @@
   $(document).ready(function(){
 
       $('.copy').on('click', function() {
+        event.preventDefault();
+        
         var copyText = $(this).siblings().first();
 
         copyText.select();
