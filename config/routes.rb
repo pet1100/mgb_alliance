@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post 'login' => "sessions#create", as: :login, constraints: NotLoggedIn.new
   constraints(IsLoggedIn.new) do
     root :to => 'invitation#index', as: :home
+    resources :invitation, only: [:update]
     resource :confirm, only: [:show, :create]
     resource :about, only: [:show]
     post 'reset' => "sessions#destroy", as: :reset

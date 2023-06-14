@@ -4,4 +4,8 @@ class InvitationController < ApplicationController
     @available_confirmed_for_me = @total_confirmed_for_me.slice(0, @total_confirmed_for_me.size+current_user.rating)
   end
 
+  def update
+    Confirmation.find(params[:id]).update used:true
+  end
+
 end

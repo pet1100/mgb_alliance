@@ -3,7 +3,7 @@
 <%= t(:count_of_available_invitations)+":" %> <%= @available_confirmed_for_me.count %>
 <% @available_confirmed_for_me.each do |c| %>
   <div>
-    <%= button_tag "", class:"btn btn-success fa-solid fa-copy copy" %>
+    <%= button_tag "", class:"btn #{c.used ? 'btn-secondary' : 'btn-success'} fa-solid fa-copy copy", data: {id: c.id } %>
     <%= text_field_tag "", c.code, :readonly => true %>
   </div>
 <% end %>
@@ -21,7 +21,19 @@
         copyText[0].setSelectionRange(0, 99999);
 
         navigator.clipboard.writeText(copyText.val());
-     });
 
+        mydata = {checked: this.checked}
+        id = this.dataset.id
+
+        this.classList.remove('btn-success');
+        this.classList.add('btn-secondary');
+
+        $.ajax({
+         type: "PATCH",
+         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+         url: "/invitation/" + id,
+         data: mydata,
+       });
+     });
    });
 </script>
