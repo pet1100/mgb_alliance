@@ -3,7 +3,7 @@
 <%= t(:count_of_available_invitations)+":" %> <%= @available_confirmed_for_me.count %>
 <% @available_confirmed_for_me.each do |c| %>
   <div>
-    <%= button_tag "", class:"btn btn-danger fa-solid fa-copy copy" %>
+    <%= button_tag "", class:"btn btn-success fa-solid fa-copy copy" %>
     <%= text_field_tag "", c.code, :readonly => true %>
   </div>
 <% end %>
@@ -14,7 +14,7 @@
 
       $('.copy').on('click', function() {
         event.preventDefault();
-        
+
         var copyText = $(this).siblings().first();
 
         copyText.select();
