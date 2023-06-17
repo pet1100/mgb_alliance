@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root :to => 'sessions#new', constraints: NotLoggedIn.new
   post 'login' => "sessions#create", as: :login, constraints: NotLoggedIn.new
+  get 'login' => "sessions#create", constraints: NotLoggedIn.new
   constraints(IsLoggedIn.new) do
     root :to => 'invitation#index', as: :home
     resources :invitation, only: [:update]
@@ -24,4 +25,6 @@ Rails.application.routes.draw do
     resource :about, only: [:show]
     post 'reset' => "sessions#destroy", as: :reset
   end
+
+  match "*path" => redirect("/"), via: [:get, :post]
 end

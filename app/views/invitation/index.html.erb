@@ -1,6 +1,17 @@
-<%= t(:count_of_all_invitations_sent_to_you)+":" %> <%= @total_confirmed_for_me.count %>
-</br>
-<%= t(:count_of_available_invitations)+":" %> <%= @available_confirmed_for_me.count %>
+<h2> <%= t(:invitations) %> </h2>
+<div>
+  <%= current_user.uuid %>
+</div>
+<% if current_user.rating > 0 %>
+  <div class="alert alert-primary">
+    <%= t('positive_rating', rating: current_user.rating) %>
+  </div>
+<% elsif current_user.rating < 0 %>
+  <div class="alert alert-danger">
+    <%= t('negative_rating', rating: current_user.rating.abs) %>
+  </div>
+<% end %>
+
 <% @available_confirmed_for_me.each do |c| %>
   <div>
     <%= button_tag "", class:"btn #{c.used ? 'btn-secondary' : 'btn-success'} fa-solid fa-copy copy", data: {id: c.id } %>

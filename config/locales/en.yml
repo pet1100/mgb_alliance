@@ -36,3 +36,5 @@ en:
     confirm: Confirm
     about: About
   logout: Logout
+  positive_rating: You have contributed %{rating} more times then you have recieved
+  negative_rating: You have recieved %{rating} more times then you have contributed

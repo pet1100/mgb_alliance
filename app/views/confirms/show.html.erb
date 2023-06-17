@@ -17,7 +17,7 @@
             <div class="col-10">
               <%= text_field_tag :uuid_confirmation_code, nil, id:"paste_text_field", class: "text_field form-control #{'is-invalid' if @confirm.try(:errors)}", autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
               <div class="invalid-feedback">
-                <% if @confirm %>
+                <% if @confirm.errors.any? %>
                   <% @confirm.errors.full_messages.each do |e|%>
                     <div>
                       <%= t(e) %>
@@ -32,7 +32,9 @@
       </div>
   <% end %>
   <% else %>
-  <%= t(:no_new_to_confirm) %>
+  <div class="alert alert-primary mt-3">
+    <%= t(:no_new_to_confirm) %>
+  </div>
 <% end %>
 
 <script type="text/javascript">
