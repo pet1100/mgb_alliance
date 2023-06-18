@@ -15,9 +15,9 @@
               <%= button_tag "", id: "paste", class:"btn btn-primary fa-regular fa-clipboard" %>
             </div>
             <div class="col-10">
-              <%= text_field_tag :uuid_confirmation_code, nil, id:"paste_text_field", class: "text_field form-control #{'is-invalid' if @confirm.try(:errors)}", autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
+              <%= text_field_tag :uuid_confirmation_code, nil, id:"paste_text_field", class: "text_field form-control #{'is-invalid' if @confirm.try(:errors).try(:any?)}", autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
               <div class="invalid-feedback">
-                <% if @confirm.errors.any? %>
+                <% if @confirm && @confirm.errors.any? %>
                   <% @confirm.errors.full_messages.each do |e|%>
                     <div>
                       <%= t(e) %>
