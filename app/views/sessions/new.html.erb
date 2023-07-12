@@ -3,7 +3,7 @@
       <div class="row align-items-center">
         <div class="mt-5">
 
-          <%= label_tag :uuid, :enter_invitation_code, :class => 'control-label' %>
+          <%= label_tag :uuid, t(:enter_invitation_code), :class => 'control-label' %>
         	<%= text_field_tag :uuid, params[:uuid], :class => 'text_field form-control', autocorrect:"off", autocapitalize:"none", autocomplete:"off", autofocus: :autofocus %>
         </div>
         <div class="mt-3">
