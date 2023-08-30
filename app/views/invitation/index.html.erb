@@ -1,5 +1,6 @@
 <h2> <%= t(:invitations) %> </h2>
 <div>
+  <%='User ID:'%>
   <%= current_user.uuid %>
 </div>
 <% if current_user.rating > 0 %>

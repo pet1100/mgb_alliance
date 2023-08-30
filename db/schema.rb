@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_192126) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_182149) do
   create_table "confirmations", force: :cascade do |t|
     t.string "code", limit: 128
     t.integer "confirmed_for_id"
     t.integer "confirmed_by_id"
     t.boolean "used", default: false
+    t.index "\"confirmed_by\"", name: "index_confirmations_on_confirmed_by"
+    t.index "\"confirmed_for\"", name: "index_confirmations_on_confirmed_for"
+    t.index ["code"], name: "index_confirmations_on_code"
     t.index ["confirmed_by_id"], name: "index_confirmations_on_confirmed_by_id"
     t.index ["confirmed_for_id"], name: "index_confirmations_on_confirmed_for_id"
   end

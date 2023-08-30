@@ -11,16 +11,11 @@ class IsLoggedIn
 end
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-  root :to => 'sessions#new', constraints: NotLoggedIn.new
+  root :to => 'sessions#new'
   post 'login' => "sessions#create", as: :login, constraints: NotLoggedIn.new
   get 'login' => "sessions#create", constraints: NotLoggedIn.new
   constraints(IsLoggedIn.new) do
-    root :to => 'invitation#index', as: :home
-    resources :invitation, only: [:update]
+    resources :invitation, only: [:update, :index]
     resource :confirm, only: [:show, :create]
     resource :about, only: [:show]
     post 'reset' => "sessions#destroy", as: :reset

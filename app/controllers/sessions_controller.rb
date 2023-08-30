@@ -1,10 +1,9 @@
 class SessionsController < ApplicationController
   def new
-    if cookies[:user_uuid]
-      user = User.find_by(uuid: cookies[:user_uuid])
+    if cookies[:user_uuid] && user = User.find_by(uuid: cookies[:user_uuid])
       user.update last_used: Time.now
       session[:user_id] = user.id
-      redirect_to home_path
+      redirect_to invitation_index_path
     end
   end
 
@@ -14,7 +13,7 @@ class SessionsController < ApplicationController
       user.update last_used: Time.now
       cookies[:user_uuid] = user.uuid
       session[:user_id] = user.id
-      redirect_to home_path
+      redirect_to invitation_index_path
     else
       render "new"
     end
